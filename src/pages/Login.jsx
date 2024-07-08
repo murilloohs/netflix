@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
+import Logo from '../images/logo.png';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,31 +15,38 @@ const Login = () => {
   }
 
   return (
-    <div className="container-login">
-      <div className="login">
-        <form>
-          <input
-            type="email"
-            value={ email }
-            name="email"
-            onChange={setEmail}
-            placeholder="Email ou número de telefone"
-          />
-          <input
-            type="text"
-            value={ password }
-            onChange={setPassword}
-            name="password"
-            placeholder="Senha"
-          />
-          <button
-            type="button"
-            className="button-login"
-            onClick={ handleClick }
-          >
-            Entrar
-          </button>
-        </form>
+    <div className="div-login">
+      <img src={Logo} alt='logo' id='logo'/>
+      <div className="container-login">
+         <div className="form-login">
+          <h2>Entrar</h2>
+          <form>
+            <input
+              type="email"
+              value={ email }
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email ou número de telefone"
+              className='input-form'
+            />
+            <input
+              type="password"
+              value={ password }
+              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              placeholder="Senha"
+              className='input-form'
+            />
+            <button
+              type="button"
+              className="button-login"
+              onClick={ handleClick }
+              id='button-enter'
+            >
+              Entrar
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
