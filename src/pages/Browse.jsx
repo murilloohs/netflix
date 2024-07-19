@@ -13,8 +13,12 @@ const Browse = () => {
       let list = await Tmdb.getHomeList();
       setMovieList(list);
 
-      
-
+      let originals = list.filter(e=>e.slug === 'originals');
+      let randomChose = Math.floor(Math.random() * (originals[0].items.results.length -1));
+      let theChosenOne = originals[0].items.results[randomChose];
+      let chosenInfo = await Tmdb.getMovieInfo(theChosenOne.id, 'tv');
+      console.log(chosenInfo);
+      setFeaturedData(chosenInfo);
     }
     loadAll();
   }, []);
