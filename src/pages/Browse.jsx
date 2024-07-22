@@ -8,13 +8,14 @@ import Header from '../components/Header';
 const Browse = () => {
   const [movieList, setMovieList] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
+  const [blackHeader, setBlackHeader] = useState(false);
 
   useEffect(()=>{
     const loadAll = async () => {
       let list = await Tmdb.getHomeList();
       setMovieList(list);
 
-      let originals = list.filter(e=>e.slug === 'originals');
+      let originals = list.filter(e => e.slug === 'originals');
       let randomChose = Math.floor(Math.random() * (originals[0].items.results.length -1));
       let theChosenOne = originals[0].items.results[randomChose];
       let chosenInfo = await Tmdb.getMovieInfo(theChosenOne.id, 'tv');
@@ -24,10 +25,24 @@ const Browse = () => {
     loadAll();
   }, []);
 
+  useEffect(() => {
+    const scrollListener = () => {
+      if(window.scrollY > 10) {
+        setBlackHeader(true);
+      } else {
+        setBlackHeader(false);
+      }
+    }
+    window.addEventListener('scroll', scrollListener);
+    return () => {
+      window.removeEventListener('scroll', scrollListener);
+    }
+  }, []);
+
   return (
     <div className="browse">
 
-      <Header />
+      <Header black={blackHeader} />
 
       {featuredData &&
       <FeaturedMovie item={featuredData} />
