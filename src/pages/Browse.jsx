@@ -53,6 +53,11 @@ const Browse = () => {
           <MovieRow key={key} title={item.title} items={item.items} />
         ))}
       </section>
+
+      <footer>
+        Direitos de imagem para <strong>Netflix</strong><br/>
+        Dados pegos no site <strong><a href='https://www.themoviedb.org/' target='_blank' rel='noopener noreferrer'>themoviedb.org</a></strong>
+      </footer>
     </div>
   );
 }
