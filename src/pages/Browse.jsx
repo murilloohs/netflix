@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Browse.css';
 import Tmdb from '../Tmdb.js';
-import MovieRow from '../components/MovieRow.jsx';
-import FeaturedMovie from '../components/FeaturedMovie.jsx';
+import MovieRow from '../components/MovieRow';
+import FeaturedMovie from '../components/FeaturedMovie';
+import Header from '../components/Header';
 
 const Browse = () => {
   const [movieList, setMovieList] = useState([]);
@@ -25,6 +26,8 @@ const Browse = () => {
 
   return (
     <div className="browse">
+
+      <Header />
 
       {featuredData &&
       <FeaturedMovie item={featuredData} />

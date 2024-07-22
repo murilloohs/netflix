@@ -1,4 +1,4 @@
-import '../styles/FeaturedMovie.css'
+import './FeaturedMovie.css'
 
 const FeaturedMovie = ({item}) => {
   let firstDate = new Date(item.first_air_date);
