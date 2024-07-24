@@ -41,7 +41,7 @@
   transform: scaleY(0.9);
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 99;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -53,18 +53,18 @@
 
 .movieRow--left {
   left: 0;
-  display: none;
 }
 
 .movieRow--right {
   right: 0;
 }
 
-.movieRow:hover .show-left,
-.movieRow:hover .movieRow--right {
-  opacity: 1;
+.show-left,
+.show-right{
+  display: flex;
 }
 
-.show-left {
-  display: flex;
+.movieRow:hover .show-left,
+.movieRow:hover .show-right {
+  opacity: 1;
 }

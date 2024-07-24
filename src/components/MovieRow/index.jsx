@@ -6,9 +6,11 @@ import { useState } from 'react';
 export default function MovieRow({ title, items }) {
   const [scrollX, setScrollX] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
   const countInicialMovies = Math.floor((window.innerWidth - 30) / 200);
 
   const handleLeftArrow = () => {
+    setShowRightArrow(true);
     setScrollX(prevScrollX => {
       const newScrollX = prevScrollX + (200 * countInicialMovies);
       if (newScrollX >= 0) {
@@ -20,16 +22,13 @@ export default function MovieRow({ title, items }) {
   };
 
   const handleRightArrow = () => {
-    const maxScrollX = -((items.results.length - countInicialMovies) * 200);
-
+    const listLength = items.results.length * 200;
+    setShowLeftArrow(true);
     setScrollX(prevScrollX => {
       const newScrollX = prevScrollX - (200 * countInicialMovies);
-      if (newScrollX < maxScrollX) {
-        setShowLeftArrow(false);
-        return 0;
-      }
-      if (newScrollX < 0) {
-        setShowLeftArrow(true);
+      if((window.innerWidth - listLength) > newScrollX){
+        setShowRightArrow(false);
+        return (window.innerWidth - listLength) - 60;
       }
       return newScrollX;
     });
@@ -44,7 +43,7 @@ export default function MovieRow({ title, items }) {
         <NavigateBeforeIcon style={{ fontSize: 50 }} />
       </div>
 
-      <div className='movieRow--right' onClick={handleRightArrow}>
+      <div className={`movieRow--right ${showRightArrow ? 'show-right' : ''}`} onClick={handleRightArrow}>
         <NavigateNextIcon style={{ fontSize: 50 }} />
       </div>
 
