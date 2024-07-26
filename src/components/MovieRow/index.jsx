@@ -3,7 +3,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useState } from 'react';
 
-export default function MovieRow({ title, items }) {
+const MovieRow = ({ title, items }) => {
   const [scrollX, setScrollX] = useState(0);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -38,8 +38,8 @@ export default function MovieRow({ title, items }) {
     <div className='movieRow'>
       <h2>{title}</h2>
       <div
-      className={`movieRow--left ${showLeftArrow ? 'show-left' : ''}`} 
-      onClick={handleLeftArrow}>
+        className={`movieRow--left ${showLeftArrow ? 'show-left' : ''}`} 
+        onClick={handleLeftArrow}>
         <NavigateBeforeIcon style={{ fontSize: 50 }} />
       </div>
 
@@ -61,3 +61,5 @@ export default function MovieRow({ title, items }) {
     </div>
   );
 }
+
+export default MovieRow;

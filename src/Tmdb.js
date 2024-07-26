@@ -16,14 +16,14 @@ const api = {
         items: await basicFetch(`/discover/tv?with_networks=213&language=pt-BR&api_key=${API_KEY}`)
       },
       {
-        slug: 'toprated',
-        title: 'Melhores Avaliados',
-        items: await basicFetch(`/tv/top_rated?language=pt-BR&api_key=${API_KEY}`)
-      },
-      {
         slug: 'trending',
         title: 'Em Alta',
         items: await basicFetch(`/trending/tv/week?language=pt-BR&api_key=${API_KEY}`)
+      },
+      {
+        slug: 'toprated',
+        title: 'Melhores Avaliados',
+        items: await basicFetch(`/tv/top_rated?language=pt-BR&api_key=${API_KEY}`)
       },
       {
         slug: 'drama',

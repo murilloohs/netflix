@@ -4,11 +4,15 @@ import Tmdb from '../Tmdb.js';
 import MovieRow from '../components/MovieRow';
 import FeaturedMovie from '../components/FeaturedMovie';
 import Header from '../components/Header';
+import MovieSkeleton from '../components/MovieRow/MovieSkeleton.jsx';
+import FeaturedMovieSkeleton from '../components/FeaturedMovie/FeaturedMovieSkeleton.jsx';
 
 const Browse = () => {
   const [movieList, setMovieList] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
   const [blackHeader, setBlackHeader] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [numberMovies, setNumberMovies] = useState(null);
 
   useEffect(()=>{
     const loadAll = async () => {
@@ -20,6 +24,7 @@ const Browse = () => {
       let theChosenOne = originals[0].items.results[randomChose];
       let chosenInfo = await Tmdb.getMovieInfo(theChosenOne.id, 'tv');
       setFeaturedData(chosenInfo);
+      setIsLoading(false);
     }
     loadAll();
   }, []);
@@ -32,7 +37,7 @@ const Browse = () => {
         setBlackHeader(false);
       }
     }
-    console.log('testando', Math.floor((window.innerWidth - 30)/200));
+    setNumberMovies(Math.floor((window.innerWidth - 30)/200));
     window.addEventListener('scroll', scrollListener);
     return () => {
       window.removeEventListener('scroll', scrollListener);
@@ -44,9 +49,10 @@ const Browse = () => {
 
       <Header black={blackHeader} />
 
-      {featuredData &&
-      <FeaturedMovie item={featuredData} />
-      }
+      {featuredData && <FeaturedMovie item={featuredData} />}
+
+      {isLoading && <FeaturedMovieSkeleton />}
+      {isLoading && <MovieSkeleton cards={numberMovies} />}
 
       <section className='lists'>
         {movieList.map((item, key)=>(
