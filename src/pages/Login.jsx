@@ -18,8 +18,8 @@ const Login = () => {
     <div className="div-login">
       <img src={Logo} alt='logo' id='logo'/>
       <div className="container-login">
-         <div className="form-login">
-          <h2>Entrar</h2>
+        <div className="form-login">
+          <h2 style={{ textAlign: "center" }}>Entrar</h2>
           <form>
             <input
               type="email"
