@@ -65,3 +65,19 @@
 #button-enter::after {
   background: rgb(193,17,25);
 }
+
+#button-enter-without {
+  width: 100%;
+  height: 2.5rem;
+  border-radius: 5px;
+  background: rgb(2, 141, 241);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  margin-top: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

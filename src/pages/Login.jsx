@@ -46,6 +46,9 @@ const Login = () => {
               Entrar
             </button>
           </form>
+          <a href={`/browse`} id='button-enter-without' className="button-login">
+              Entrar sem Login
+            </a>
         </div>
       </div>
     </div>
